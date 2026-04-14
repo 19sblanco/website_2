@@ -15,7 +15,8 @@ namespace WebServer
 
         public string WeatherForcast()
         {
-            var forecast =  Enumerable.Range(1, 5).Select(index =>
+            Console.WriteLine("here");
+            var forecast = Enumerable.Range(1, 5).Select(index =>
                 new WeatherForecast
                 (
                     DateOnly.FromDateTime(DateTime.Now.AddDays(index)),

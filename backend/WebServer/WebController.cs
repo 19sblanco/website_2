@@ -15,7 +15,8 @@ namespace WebServer
         }
 
         [HttpGet("weatherforecast")]
-        public IActionResult GetWeather() {
+        public IActionResult GetWeather()
+        {
             string result = _weatherService.WeatherForcast();
             return Ok(result);
         }
