@@ -5,8 +5,8 @@ frontend/dist-ssr/
 *.local
 
 # Backend
-backend/WebServer/bin/
-backend/WebServer/obj/
+backend/*/bin/
+backend/*/obj/
 
 # Logs
 *.log
