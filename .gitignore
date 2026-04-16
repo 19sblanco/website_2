@@ -24,7 +24,6 @@ Thumbs.db
 *.njsproj
 *.sw?
 .idea/
-.vscode/
 
 # notes
 notes/

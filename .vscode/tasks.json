@@ -1,0 +1,71 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-backend",
+      "type": "shell",
+      "command": "make build-backend",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "start-frontend",
+      "type": "shell",
+      "command": "make frontend",
+      "isBackground": true,
+      "dependsOn": "build-frontend",
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": {
+          "regexp": "^$"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "VITE v.* ready in",
+          "endsPattern": "VITE v.* ready in"
+        }
+      }
+    },
+    {
+      "label": "format-frontend",
+      "type": "shell",
+      "command": "make format-frontend",
+      "problemMatcher": []
+    },
+    {
+      "label": "lint-frontend",
+      "type": "shell",
+      "command": "make lint-frontend",
+      "problemMatcher": "$eslint-stylish"
+    },
+    {
+      "label": "build-frontend",
+      "type": "shell",
+      "command": "make build-frontend",
+      "problemMatcher": []
+    },
+    {
+      "label": "Verify Frontend",
+      "dependsOn": ["format-frontend", "lint-frontend", "build-frontend"],
+      "dependsOrder": "sequence"
+    },
+    {
+      "label": "format-backend",
+      "type": "shell",
+      "command": "make format-backend"
+    },
+    {
+      "label": "Verify Backend",
+      "dependsOn": ["format-backend", "build-backend"],
+      "dependsOrder": "sequence"
+    },
+    {
+      "label": "Verify Full Stack",
+      "dependsOn": ["Verify Frontend", "Verify Backend"],
+      "dependsOrder": "parallel",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

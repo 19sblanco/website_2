@@ -15,7 +15,6 @@ namespace WebServer
 
         public string WeatherForcast()
         {
-            Console.WriteLine("here");
             var forecast = Enumerable.Range(1, 5).Select(index =>
                 new WeatherForecast
                 (
