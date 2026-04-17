@@ -1,4 +1,4 @@
-.PHONY: backend frontend format-frontend lint-frontend build-frontend verify-frontend format-backend build-backend verify-backend verify-all
+.PHONY: backend frontend format-frontend lint-frontend build-frontend verify-frontend format-backend build-backend verify-backend verify-all test-frontend
 
 backend:
 	dotnet run --project backend/WebServer/WebServer.csproj
@@ -26,3 +26,7 @@ build-backend:
 verify-backend: format-backend build-backend
 
 verify-all: verify-frontend verify-backend
+
+test-frontend:
+	npm run unit
+	npm run e2e
