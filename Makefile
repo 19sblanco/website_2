@@ -15,7 +15,7 @@ frontend:
 # docker
 ######################
 docker-dev:
-	docker compose -f docker-compose.dev.yml up --build
+	UID=$(shell id -u) GID=$(shell id -g) docker compose -f docker-compose.dev.yml up --build
 
 docker-dev-down:
 	docker compose -f docker-compose.dev.yml down

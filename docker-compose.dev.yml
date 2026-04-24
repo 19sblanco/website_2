@@ -3,8 +3,9 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.dev
+    user: "${UID}:${GID}"
     ports:
-      - "8080:8080"
+      - "5089:5089"
     volumes:
       - ./backend:/app
 
@@ -12,8 +13,11 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile.dev
+    user: "${UID}:${GID}"
     ports:
       - "5173:5173" # Vite dev port
+    environment:
+      - VITE_API_URL=http://localhost:5089
     volumes:
       - ./frontend:/app
     depends_on:
