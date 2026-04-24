@@ -1,4 +1,4 @@
-.PHONY: backend frontend format-frontend lint-frontend build-frontend verify-frontend format-backend build-backend verify-backend verify-all test-frontend
+.PHONY: backend frontend format-frontend lint-frontend build-frontend verify-frontend format-backend build-backend verify-backend verify-all test-frontend docker-dev docker-prod docker-dev-down docker-prod-down
 
 
 ######################
@@ -9,6 +9,22 @@ backend:
 
 frontend:
 	cd frontend && npm run dev
+
+
+######################
+# docker
+######################
+docker-dev:
+	docker compose -f docker-compose.dev.yml up --build
+
+docker-dev-down:
+	docker compose -f docker-compose.dev.yml down
+
+docker-prod:
+	docker compose up --build
+
+docker-prod-down:
+	docker compose down
 
 
 ######################
