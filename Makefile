@@ -2,16 +2,6 @@
 
 
 ######################
-# run projects
-######################
-backend:
-	dotnet run --project backend/WebServer/WebServer.csproj
-
-frontend:
-	cd frontend && npm run dev
-
-
-######################
 # docker
 ######################
 docker-dev:
@@ -25,6 +15,16 @@ docker-prod:
 
 docker-prod-down:
 	docker compose down
+
+
+######################
+# run projects
+######################
+backend:
+	dotnet run --project backend/WebServer/WebServer.csproj
+
+frontend:
+	cd frontend && npm run dev
 
 
 ######################

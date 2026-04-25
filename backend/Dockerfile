@@ -6,9 +6,9 @@ COPY . .
 
 RUN dotnet publish WebServer/WebServer.csproj -c Release -o /publish
 
-EXPOSE 8080
+EXPOSE 5089
 
-ENV ASPNETCORE_URLS=http://+:8080
+ENV ASPNETCORE_URLS=http://+:5089
 
 CMD ["dotnet", "/publish/WebServer.dll"]
 
