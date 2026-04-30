@@ -1,1 +1,1 @@
-{ "dotnet.defaultSolution": "backend/2.0 website.sln" }
+{ "dotnet.defaultSolution": "src/backend/2.0 website.sln" }

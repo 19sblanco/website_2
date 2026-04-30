@@ -1,24 +1,23 @@
 services:
   backend:
     build:
-      context: ./backend
+      context: ./src/backend
       dockerfile: Dockerfile.dev
-    user: "${UID}:${GID}"
     ports:
       - "5089:5089"
     volumes:
-      - ./backend:/app
+      - ./src/backend:/app
 
   frontend:
     build:
-      context: ./frontend
+      context: ./src/frontend
       dockerfile: Dockerfile.dev
-    user: "${UID}:${GID}"
     ports:
       - "5173:5173" # Vite dev port
     environment:
       - VITE_API_URL=http://localhost:5089
     volumes:
-      - ./frontend:/app
+      - ./src/frontend:/app
+      - /app/node_modules
     depends_on:
       - backend

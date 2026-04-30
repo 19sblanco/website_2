@@ -21,29 +21,29 @@ docker-prod-down:
 # run projects
 ######################
 backend:
-	dotnet run --project backend/WebServer/WebServer.csproj
+	dotnet run --project src/backend/WebServer/WebServer.csproj
 
 frontend:
-	cd frontend && npm run dev
+	cd src/frontend && npm run dev
 
 
 ######################
 # format, lint, build
 ######################
 format-frontend:
-	cd frontend && npm run format
+	cd src/frontend && npm run format
 
 lint-frontend:
-	cd frontend && npm run lint
+	cd src/frontend && npm run lint
 
 format-backend:
-	dotnet format backend/WebServer/WebServer.csproj
+	dotnet format src/backend/WebServer/WebServer.csproj
 
 build-frontend:
-	cd frontend && npm run build
+	cd src/frontend && npm run build
 
 build-backend:
-	dotnet build backend/WebServer/WebServer.csproj
+	dotnet build src/backend/WebServer/WebServer.csproj
 
 verify-frontend: format-frontend lint-frontend build-frontend
 
@@ -56,12 +56,12 @@ verify-all: verify-frontend verify-backend
 # Tests
 ###########
 test-frontend:
-	cd frontend && npm run unit
+	cd src/frontend && npm run unit
 
 test-backend:
-	cd backend && dotnet test
+	cd src/backend && dotnet test
 
 test-e2e:
-	cd frontend && npm run e2e
+	cd src/frontend && npm run e2e
 
 test-all: test-frontend test-backend test-e2e
