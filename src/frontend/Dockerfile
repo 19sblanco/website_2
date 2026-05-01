@@ -1,10 +1,10 @@
-FROM node:25-alpine
+FROM node:25-bookworm-slim
 
 WORKDIR /app
 
-COPY package.json package.json
+COPY package*.json ./
 
-RUN npm install
+RUN npm ci
 
 COPY . .
 
