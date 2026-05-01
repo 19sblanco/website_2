@@ -10,8 +10,7 @@ function App() {
 
   const fetchWeather = async () => {
     const response = await fetch(
-      `${import.me
-        ta.env.VITE_API_URL}/api/web/weatherforecast`,
+      `${import.meta.env.VITE_API_URL}/api/web/weatherforecast`,
     );
     const data = await response.json();
     setWeather(JSON.stringify(data, null, 2));
