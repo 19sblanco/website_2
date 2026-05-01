@@ -15,11 +15,20 @@ jobs:
         with:
           node-version: 25
 
-      - name: Install dependencies & Test
+      - name: Install dependencies
+        working-directory: src/frontend
+        run: npm ci
+
+      - name: Check format, lint, and build
         working-directory: src/frontend
         run: |
-          npm ci
-          npm run unit
+          npm run format:check
+          npm run lint
+          npm run build
+
+      - name: Run unit tests
+        working-directory: src/frontend
+        run: npm run unit
 
   backend:
     runs-on: ubuntu-24.04
@@ -30,6 +39,12 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "10.0.x"
+
+      - name: Check format and build
+        working-directory: src/backend
+        run: |
+          dotnet format --verify-no-changes WebServer/WebServer.csproj
+          dotnet build WebServer/WebServer.csproj
 
       - name: Run tests
         working-directory: src/backend
