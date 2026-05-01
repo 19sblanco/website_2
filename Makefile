@@ -1,4 +1,4 @@
-.PHONY: backend frontend format-frontend lint-frontend build-frontend verify-frontend format-backend build-backend verify-backend verify-all test-frontend docker-dev docker-prod docker-dev-down docker-prod-down
+.PHONY: backend frontend format-frontend lint-frontend build-frontend verify-frontend format-backend build-backend verify-backend verify-all test-frontend docker-dev docker-prod docker-dev-down docker-prod-down docker-build-frontend docker-build-backend docker-build-frontend-dev docker-build-backend-dev
 
 
 ######################
@@ -15,6 +15,18 @@ docker-prod:
 
 docker-prod-down:
 	docker compose down
+
+docker-build-frontend:
+	docker build -t frontend-prod src/frontend
+
+docker-build-backend:
+	docker build -t backend-prod src/backend
+
+docker-build-frontend-dev:
+	docker build -t frontend-dev -f src/frontend/Dockerfile.dev src/frontend
+
+docker-build-backend-dev:
+	docker build -t backend-dev -f src/backend/Dockerfile.dev src/backend
 
 
 ######################
