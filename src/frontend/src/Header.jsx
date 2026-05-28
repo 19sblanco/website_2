@@ -1,10 +1,11 @@
 function Header() {
   return (
-    <>
-      <header>
-        <h1>This is the Heading</h1>
-      </header>
-    </>
+    <header className="site-header">
+      <div className="header-content">
+        <h1 className="site-title">Your Name</h1>
+        <p className="site-subtitle">Software Developer</p>
+      </div>
+    </header>
   );
 }
 

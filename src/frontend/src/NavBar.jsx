@@ -1,23 +1,21 @@
 function NavBar() {
   return (
-    <>
-      <nav>
-        <ul>
-          <li>
-            <a href="">Home</a>
-          </li>
-          <li>
-            <a href="">Projects</a>
-          </li>
-          <li>
-            <a href="">Contact</a>
-          </li>
-          <li>
-            <a href="">Resume</a>
-          </li>
-        </ul>
-      </nav>
-    </>
+    <nav className="site-nav">
+      <ul className="nav-list">
+        <li>
+          <a href="#hero">Home</a>
+        </li>
+        <li>
+          <a href="#projects">Projects</a>
+        </li>
+        <li>
+          <a href="#resume">Resume</a>
+        </li>
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+      </ul>
+    </nav>
   );
 }
 

@@ -7,6 +7,7 @@ src/frontend/dist-ssr/
 # Backend
 src/backend/*/bin/
 src/backend/*/obj/
+src/backend/**/*.lscache
 
 # Logs
 *.log
