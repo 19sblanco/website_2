@@ -1,28 +1,22 @@
-.main-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
 .hero-section p {
   margin-top: 12px;
-  font-size: 1.1rem;
+  font-size: var(--font-size-lg);
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
-  margin-top: 24px;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
 }
 
 .project-card {
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   padding: 20px;
 }
 
 .project-card h3 {
-  margin: 0 0 8px;
+  margin: 0 0 var(--space-sm);
   color: var(--text-h);
 }
