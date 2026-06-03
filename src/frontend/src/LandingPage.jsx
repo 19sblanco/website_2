@@ -1,5 +1,14 @@
 import Header from "./Header";
 import Footer from "./Footer";
+import pythonLogo from "./assets/pythonLogo.png";
+import javascriptLogo from "./assets/javascriptLogo.jpg";
+import sqlLogo from "./assets/sqlLogo.png";
+import googleCloudLogo from "./assets/googleCloudLogo.png";
+import dockerLogo from "./assets/dockerLogo.png";
+import gitLogo from "./assets/gitLogo.png";
+import reactLogo from "./assets/reactLogo.png";
+import javaLogo from "./assets/javaLogo.png";
+import cSharpLogo from "./assets/cSharpLogo.png";
 import "./landingPage.css";
 
 function LandingPage() {
@@ -9,77 +18,161 @@ function LandingPage() {
       <main className="main-content">
         <section id="hero" className="section hero-section">
           <h1 className="hero-role">Full Stack Software Engineer</h1>
-          <h2 className="hero-name">Steven Blanco</h2>
+          <h1 className="hero-name">Steven Blanco</h1>
           <a href="#projects" className="btn-pill-black">
-            About me →
+            About me
           </a>
         </section>
 
         <section className="tech-stack-row">
           <div className="tech-icons-container">
             <div className="tech-icons">
-              <span className="tech-icon-placeholder" title="Java">
-                ☕
-              </span>
-              <span className="tech-icon-placeholder" title="React">
-                ⚛️
-              </span>
-              <span className="tech-icon-placeholder" title="JavaScript">
-                JS
+              <span className="tech-icon-placeholder" title="SQL">
+                <img
+                  className="tech-icon-image"
+                  src={sqlLogo}
+                  alt="SQL"
+                  title="SQL"
+                />
               </span>
               <span className="tech-icon-placeholder" title="Python">
-                🐍
+                <img
+                  className="tech-icon-image"
+                  src={pythonLogo}
+                  alt="Python"
+                  title="Python"
+                />
               </span>
-              <span className="tech-icon-placeholder" title="TypeScript">
-                TS
+              <span className="tech-icon-placeholder" title="CSharp">
+                <img
+                  className="tech-icon-image"
+                  src={cSharpLogo}
+                  alt="CSharp"
+                  title="CSharp"
+                />
+              </span>
+              <span className="tech-icon-placeholder" title="React">
+                <img
+                  className="tech-icon-image"
+                  src={reactLogo}
+                  alt="React"
+                  title="React"
+                />
               </span>
               <span className="tech-icon-placeholder" title="Git">
-                🐙
-              </span>
-              <span className="tech-icon-placeholder" title="Node">
-                🟢
+                <img
+                  className="tech-icon-image"
+                  src={gitLogo}
+                  alt="Git"
+                  title="Git"
+                />
               </span>
               <span className="tech-icon-placeholder" title="Docker">
-                🐳
+                <img
+                  className="tech-icon-image"
+                  src={dockerLogo}
+                  alt="Docker"
+                  title="Docker"
+                />
               </span>
-              <span className="tech-icon-placeholder" title="AWS">
-                ☁️
+              <span className="tech-icon-placeholder" title="Google Cloud">
+                <img
+                  className="tech-icon-image"
+                  src={googleCloudLogo}
+                  alt="Google Cloud"
+                  title="Google Cloud"
+                />
               </span>
-              <span className="tech-icon-placeholder" title="SQL">
-                💾
+              <span className="tech-icon-placeholder" title="JavaScript">
+                <img
+                  className="tech-icon-image"
+                  src={javascriptLogo}
+                  alt="Javascript"
+                  title="Javascript"
+                />
+              </span>
+              <span className="tech-icon-placeholder" title="Java">
+                <img
+                  className="tech-icon-image"
+                  src={javaLogo}
+                  alt="Java"
+                  title="Java"
+                />
               </span>
             </div>
             {/* Duplicate set for seamless scrolling */}
             <div className="tech-icons">
-              <span className="tech-icon-placeholder" title="Java">
-                ☕
-              </span>
-              <span className="tech-icon-placeholder" title="React">
-                ⚛️
-              </span>
-              <span className="tech-icon-placeholder" title="JavaScript">
-                JS
+              <span className="tech-icon-placeholder" title="SQL">
+                <img
+                  className="tech-icon-image"
+                  src={sqlLogo}
+                  alt="SQL"
+                  title="SQL"
+                />
               </span>
               <span className="tech-icon-placeholder" title="Python">
-                🐍
+                <img
+                  className="tech-icon-image"
+                  src={pythonLogo}
+                  alt="Python"
+                  title="Python"
+                />
               </span>
-              <span className="tech-icon-placeholder" title="TypeScript">
-                TS
+              <span className="tech-icon-placeholder" title="CSharp">
+                <img
+                  className="tech-icon-image"
+                  src={cSharpLogo}
+                  alt="CSharp"
+                  title="CSharp"
+                />
+              </span>
+              <span className="tech-icon-placeholder" title="React">
+                <img
+                  className="tech-icon-image"
+                  src={reactLogo}
+                  alt="React"
+                  title="React"
+                />
               </span>
               <span className="tech-icon-placeholder" title="Git">
-                🐙
-              </span>
-              <span className="tech-icon-placeholder" title="Node">
-                🟢
+                <img
+                  className="tech-icon-image"
+                  src={gitLogo}
+                  alt="Git"
+                  title="Git"
+                />
               </span>
               <span className="tech-icon-placeholder" title="Docker">
-                🐳
+                <img
+                  className="tech-icon-image"
+                  src={dockerLogo}
+                  alt="Docker"
+                  title="Docker"
+                />
               </span>
-              <span className="tech-icon-placeholder" title="AWS">
-                ☁️
+              <span className="tech-icon-placeholder" title="Google Cloud">
+                <img
+                  className="tech-icon-image"
+                  src={googleCloudLogo}
+                  alt="Google Cloud"
+                  title="Google Cloud"
+                />
               </span>
-              <span className="tech-icon-placeholder" title="SQL">
-                💾
+              <span className="tech-icon-placeholder" title="JavaScript">
+                <img
+                  className="tech-icon-image"
+                  src={javascriptLogo}
+                  alt="Javascript"
+                  title="Javascript"
+                />
+              </span>
+              <span className="tech-icon-placeholder" title="Java">
+                <img
+                  className="tech-icon-image"
+                  src={javaLogo}
+                  alt="Java"
+                  title="Java"
+                />
               </span>
             </div>
           </div>
