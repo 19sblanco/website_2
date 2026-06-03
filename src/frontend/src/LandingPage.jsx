@@ -1,5 +1,4 @@
 import Header from "./Header";
-import NavBar from "./NavBar";
 import Footer from "./Footer";
 import "./landingPage.css";
 
@@ -7,17 +6,107 @@ function LandingPage() {
   return (
     <div className="layout">
       <Header />
-      <NavBar />
       <main className="main-content">
         <section id="hero" className="section hero-section">
-          <h1>Hi, I'm Steven Blanco</h1>
-          <p>
-            I have 2 years of experience working as a Full Stack Developer where
-            I gained experience in working with the Backend, Frontend, CI/CD
-            pipeline, Google cloud, and working with users. In my free time, I
-            enjoy completing projects and learning theory. I made this website
-            to showcase my programming, both professionally and personally.
-          </p>
+          <h1 className="hero-role">Full Stack Software Engineer</h1>
+          <h2 className="hero-name">Steven Blanco</h2>
+          <a href="#projects" className="btn-pill-black">
+            About me →
+          </a>
+        </section>
+
+        <section className="tech-stack-row">
+          <div className="tech-icons-container">
+            <div className="tech-icons">
+              <span className="tech-icon-placeholder" title="Java">
+                ☕
+              </span>
+              <span className="tech-icon-placeholder" title="React">
+                ⚛️
+              </span>
+              <span className="tech-icon-placeholder" title="JavaScript">
+                JS
+              </span>
+              <span className="tech-icon-placeholder" title="Python">
+                🐍
+              </span>
+              <span className="tech-icon-placeholder" title="TypeScript">
+                TS
+              </span>
+              <span className="tech-icon-placeholder" title="Git">
+                🐙
+              </span>
+              <span className="tech-icon-placeholder" title="Node">
+                🟢
+              </span>
+              <span className="tech-icon-placeholder" title="Docker">
+                🐳
+              </span>
+              <span className="tech-icon-placeholder" title="AWS">
+                ☁️
+              </span>
+              <span className="tech-icon-placeholder" title="SQL">
+                💾
+              </span>
+            </div>
+            {/* Duplicate set for seamless scrolling */}
+            <div className="tech-icons">
+              <span className="tech-icon-placeholder" title="Java">
+                ☕
+              </span>
+              <span className="tech-icon-placeholder" title="React">
+                ⚛️
+              </span>
+              <span className="tech-icon-placeholder" title="JavaScript">
+                JS
+              </span>
+              <span className="tech-icon-placeholder" title="Python">
+                🐍
+              </span>
+              <span className="tech-icon-placeholder" title="TypeScript">
+                TS
+              </span>
+              <span className="tech-icon-placeholder" title="Git">
+                🐙
+              </span>
+              <span className="tech-icon-placeholder" title="Node">
+                🟢
+              </span>
+              <span className="tech-icon-placeholder" title="Docker">
+                🐳
+              </span>
+              <span className="tech-icon-placeholder" title="AWS">
+                ☁️
+              </span>
+              <span className="tech-icon-placeholder" title="SQL">
+                💾
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <section id="experience" className="section experience-section">
+          <h2>Work Experience</h2>
+          <div className="experience-list">
+            <ExperienceItem
+              title="Senior Full Stack Engineer"
+              company="Tech Solutions Inc."
+              period="2024 - Present"
+              description="Leading development of cloud-native applications using React and Node.js. Optimized database performance by 40%."
+            />
+            <ExperienceItem
+              title="Full Stack Developer"
+              company="Digital Creations"
+              period="2022 - 2024"
+              description="Developed and maintained various client websites. Implemented CI/CD pipelines and automated testing suites."
+            />
+            <ExperienceItem
+              title="Junior Web Developer"
+              company="StartUp Hub"
+              period="2021 - 2022"
+              description="Assisted in the development of front-end components and integrated RESTful APIs."
+            />
+          </div>
         </section>
 
         <section id="projects" className="section projects-section">
@@ -68,6 +157,19 @@ function ProjectCard({ cardName, description, link }) {
       <h3>{cardName}</h3>
       <p>{description}</p>
     </a>
+  );
+}
+
+function ExperienceItem({ title, company, period, description }) {
+  return (
+    <div className="experience-item">
+      <div className="experience-header">
+        <h3 className="experience-title">{title}</h3>
+        <span className="experience-period">{period}</span>
+      </div>
+      <div className="experience-company">{company}</div>
+      <p className="experience-description">{description}</p>
+    </div>
   );
 }
 

@@ -97,111 +97,29 @@ body {
   flex-direction: column;
   min-height: 100svh;
 }
-
 .site-header {
-  padding: var(--space-xl) var(--space-lg) var(--space-md);
-  background: #1e3a5f;
-  border-bottom: 1px solid var(--border);
-  text-align: center;
-}
-
-.site-header .site-title {
-  margin: 0 0 var(--space-xs);
-  color: #ffffff;
-}
-
-.site-header .site-subtitle {
-  color: rgba(255, 255, 255, 0.75);
-  margin-top: 20px;
-  font-size: var(--font-size-h2);
-}
-
-.site-nav {
-  border-bottom: 1px solid var(--border);
   padding: 12px var(--space-lg);
-  background: #ffffff;
-}
-
-.nav-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
-  justify-content: center;
-  gap: var(--space-xl);
-}
-
-.nav-list a {
-  text-decoration: none;
-  color: var(--text);
-  font-weight: 500;
-  transition: color var(--transition-base);
-}
-
-.nav-list a:hover {
-  color: var(--accent);
-}
-
-.nav-item--dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: calc(100%);
-  left: 0;
-  min-width: 180px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow);
-  padding: var(--space-sm) 0;
-  list-style: none;
-  margin: 0;
-  z-index: 10;
-}
-
-.dropdown-menu li {
-  padding: 0;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 10px 16px;
-  color: var(--text);
-  text-decoration: none;
-  transition:
-    background var(--transition-base),
-    color var(--transition-base);
-}
-
-.dropdown-menu a:hover {
-  background: var(--accent-bg);
-  color: var(--accent);
-}
-
-.nav-item--dropdown.is-open > .dropdown-menu {
-  display: block;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
 }
 
 .section {
   padding: var(--space-2xl) var(--space-lg);
   border-bottom: 1px solid var(--border);
-  text-align: left;
-  max-width: var(--max-width-content);
+  text-align: center;
+  max-width: 100%;
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
 }
 
-.section > h1,
 .section > h2 {
-  display: inline-block;
-  line-height: 1.1;
-  padding-bottom: var(--space-sm);
-  border-bottom: 3px solid var(--accent);
-  margin-bottom: var(--space-lg);
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: var(--space-xl);
+  color: #000;
 }
 
 .resume-link {
@@ -238,11 +156,10 @@ body {
 /* ---- Base Styles ---- */
 
 #root {
-  width: var(--max-width-site);
+  width: 100%;
   max-width: 100%;
-  margin: 0 auto;
+  margin: 0;
   text-align: center;
-  border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
