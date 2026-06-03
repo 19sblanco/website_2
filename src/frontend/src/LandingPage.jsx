@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import pythonLogo from "./assets/pythonLogo.png";
@@ -15,6 +16,53 @@ import raspberryPiServerLogo from "./assets/raspberryPiWebsiteServer.jpeg";
 import "./landingPage.css";
 
 function LandingPage() {
+  const [contactForm, setContactForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [statusType, setStatusType] = useState("success");
+  const apiUrl = import.meta.env.VITE_API_URL ?? "/api";
+
+  const handleContactChange = (event) => {
+    const { name, value } = event.target;
+    setContactForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleContactSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setStatusMessage("");
+    setStatusType("success");
+
+    try {
+      const response = await fetch(`${apiUrl}/api/web/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contactForm),
+      });
+
+      if (!response.ok) {
+        throw new Error("Server error");
+      }
+
+      setStatusMessage("Thanks! Your message was sent successfully.");
+      setContactForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Contact submit failed", error);
+      setStatusType("error");
+      setStatusMessage(
+        "Something went wrong. Please try again later or email me directly.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="layout">
       <Header />
@@ -235,14 +283,97 @@ function LandingPage() {
         <section id="resume" className="section resume-section">
           <h2>Resume</h2>
           <p>Summary of skills, experience, and education.</p>
-          <a href="#" className="resume-link">
+          <a
+            href="/Resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="resume-link"
+          >
             Download Resume
           </a>
         </section>
 
         <section id="contact" className="section contact-section">
           <h2>Contact</h2>
-          <p>Reach out via email or connect on social media.</p>
+          <p>
+            If you're interest in my work or would like to work with me on
+            anything, please submit it down below and I can get in contact with
+            you.
+          </p>
+
+          <form className="contact-form" onSubmit={handleContactSubmit}>
+            <label className="contact-field">
+              <span>Name</span>
+              <input
+                className="contact-input"
+                type="text"
+                name="name"
+                value={contactForm.name}
+                onChange={handleContactChange}
+                placeholder="Your name"
+                required
+              />
+            </label>
+
+            <label className="contact-field">
+              <span>Email</span>
+              <input
+                className="contact-input"
+                type="email"
+                name="email"
+                value={contactForm.email}
+                onChange={handleContactChange}
+                placeholder="you@example.com"
+                required
+              />
+            </label>
+
+            <label className="contact-field">
+              <span>Message</span>
+              <textarea
+                className="contact-textarea"
+                name="message"
+                value={contactForm.message}
+                onChange={handleContactChange}
+                placeholder="What would you like to contact me about?"
+                required
+              />
+            </label>
+
+            <button
+              type="submit"
+              className="resume-link contact-submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Sending…" : "Send message"}
+            </button>
+          </form>
+
+          {statusMessage && (
+            <div
+              className={`contact-status ${
+                statusType === "error"
+                  ? "contact-status-error"
+                  : "contact-status-success"
+              }`}
+            >
+              {statusMessage}
+            </div>
+          )}
+
+          <div className="contact-links">
+            <a className="contact-link" href="mailto:steven.blanc521@gmail.com">
+              steven.blanc521@gmail.com
+            </a>
+            <a
+              className="contact-link"
+              href="https://www.linkedin.com/in/steven-blanco-b69553199/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              LinkedIn: Steven Blanco
+            </a>
+          </div>
         </section>
       </main>
       <Footer />
