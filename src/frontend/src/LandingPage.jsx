@@ -10,7 +10,7 @@ function LandingPage() {
       <NavBar />
       <main className="main-content">
         <section id="hero" className="section hero-section">
-          <h2>Hi, Steven Blanco</h2>
+          <h1>Hi, I'm Steven Blanco</h1>
           <p>
             I have 2 years of experience working as a Full Stack Developer where
             I gained experience in working with the Backend, Frontend, CI/CD

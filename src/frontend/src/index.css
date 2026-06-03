@@ -2,8 +2,8 @@
   /* ---- Colors: Navy & Amber ---- */
   --text: #374151;
   --text-h: #1e3a5f;
-  --bg: #e9eef7;
-  --border: #dee2e6;
+  --bg: #f5f5f5;
+  --border: #d1d5db;
   --code-bg: #ffffff;
   --accent: #d97706;
   --accent-bg: rgba(217, 119, 6, 0.08);
@@ -83,7 +83,7 @@
 
 body {
   margin: 0;
-  background: #f5f5f5;
+  background: #cacaca;
 }
 
 .main-content {
@@ -195,6 +195,15 @@ body {
   box-sizing: border-box;
 }
 
+.section > h1,
+.section > h2 {
+  display: inline-block;
+  line-height: 1.1;
+  padding-bottom: var(--space-sm);
+  border-bottom: 3px solid var(--accent);
+  margin-bottom: var(--space-lg);
+}
+
 .resume-link {
   display: inline-block;
   margin-top: var(--space-md);
@@ -238,6 +247,7 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  background: #ffffff;
 }
 
 h1,
