@@ -9,6 +9,9 @@ import gitLogo from "./assets/gitLogo.png";
 import reactLogo from "./assets/reactLogo.png";
 import javaLogo from "./assets/javaLogo.png";
 import cSharpLogo from "./assets/cSharpLogo.png";
+import sacredOSLogo from "./assets/sacredOSLogo.png";
+import travelingSalesmanProjectLogo from "./assets/travelingSalesmanProjectLogo.png";
+import raspberryPiServerLogo from "./assets/raspberryPiWebsiteServer.jpeg";
 import "./landingPage.css";
 
 function LandingPage() {
@@ -207,21 +210,24 @@ function LandingPage() {
           <div className="projects-grid">
             <ProjectCard
               cardName="Self Hosted Website"
-              description="My previous version of this site, where I hosted website on a raspberry pi in my house.
+              description="My previous version of this site, I hosted that website on a raspberry pi on my home network.
               That website attracted 1000's of unique visitors"
-              link="https://example.com/self-hosted-website"
+              link="https://steven-blanco.com/"
+              logo={raspberryPiServerLogo}
             />
             <ProjectCard
               cardName="SacredOS OS Contribution"
               description="Contributed to the open source project SacredOS. I added my application SpeedRead
               to its app store."
-              link="https://example.com/sacredos-contribution"
+              link="https://sacred.neocities.org/"
+              logo={sacredOSLogo}
             />
             <ProjectCard
               cardName="Traveling Salesman Simulation"
               description="I simulated the Traveling Salesman Problem using progressively optimized approaches.
               This was a self study into code optimization."
-              link="https://example.com/traveling-salesman"
+              link="https://github.com/19sblanco/tsp_c"
+              logo={travelingSalesmanProjectLogo}
             />
           </div>
         </section>
@@ -244,11 +250,18 @@ function LandingPage() {
   );
 }
 
-function ProjectCard({ cardName, description, link }) {
+function ProjectCard({ cardName, description, link, logo }) {
   return (
-    <a className="project-card" href={link} target="_blank">
-      <h3>{cardName}</h3>
-      <p>{description}</p>
+    <a className="project-card" href={link} target="_blank" rel="noreferrer">
+      {logo && (
+        <div className="project-card-image">
+          <img className="project-card-logo" src={logo} alt={cardName} />
+        </div>
+      )}
+      <div className="project-card-body">
+        <h3>{cardName}</h3>
+        <p>{description}</p>
+      </div>
     </a>
   );
 }
