@@ -3,7 +3,7 @@ function Header() {
     <header className="site-header">
       <div className="header-content">
         <h1 className="site-title">Steven Blanco</h1>
-        <p className="site-subtitle">Software Developer</p>
+        <p className="site-subtitle">Full Stack Software Developer</p>
       </div>
     </header>
   );
