@@ -19,3 +19,19 @@ services:
       - /app/node_modules
     depends_on:
       - backend
+
+  database:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: portfolio
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: appsecret
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
