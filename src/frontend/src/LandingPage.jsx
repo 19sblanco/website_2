@@ -182,22 +182,22 @@ function LandingPage() {
           <h2>Work Experience</h2>
           <div className="experience-list">
             <ExperienceItem
-              title="Senior Full Stack Engineer"
-              company="Tech Solutions Inc."
-              period="2024 - Present"
-              description="Leading development of cloud-native applications using React and Node.js. Optimized database performance by 40%."
+              title="Software Engineer"
+              company="Digital Family Office"
+              period="January 2026 - April 2026"
+              description="Contributed to the development of a .NET and React application hosted on google cloud. I worked on the frontend, backend, and CI/CD pipeline, where I contributed to the development, testing, and monitoring of the system."
             />
             <ExperienceItem
-              title="Full Stack Developer"
+              title="Junior Software Engineer/Developer"
               company="Digital Creations"
-              period="2022 - 2024"
-              description="Developed and maintained various client websites. Implemented CI/CD pipelines and automated testing suites."
+              period="July 2025 - January 2026"
+              description="Helped maintain and build new features in a web based electronic medical records system written in HTML, CSS, Javascript, and PHP. I implimented features based on stake holders requests, presented system findings to the dev team, and pushed for new features for a better overall product."
             />
             <ExperienceItem
-              title="Junior Web Developer"
-              company="StartUp Hub"
-              period="2021 - 2022"
-              description="Assisted in the development of front-end components and integrated RESTful APIs."
+              title="Software Engineer Contractor"
+              company="Oak Tree Technologies"
+              period="September 2024 - January 2025"
+              description="Collaborated in cross functional teams and worked directly with customers to build custom solutions, including a program for sales affiliate. I also authored documentation for internal use."
             />
           </div>
         </section>
