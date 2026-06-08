@@ -25,3 +25,5 @@
 ### docker
 
 This project is developed using docker containers. When the front and backend code is changed the containers are hot reloaded for a smooth development experience
+
+### accessibility statement
