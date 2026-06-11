@@ -1,4 +1,4 @@
-namespace WebServer;
+namespace WebServer.Entities;
 
 /// <summary>
 /// Starter entity mapped to the contacts table. Rename properties, add columns,
@@ -14,8 +14,9 @@ public class Contact
 
     public string Message { get; set; } = string.Empty;
 
-    // FK to traffic_logs.id — add a TrafficLog navigation property when that entity exists.
     public int? TrafficId { get; set; }
 
     public DateTime CreatedAt { get; set; }
+
+    public TrafficLogs? Traffic { get; set; }
 }
