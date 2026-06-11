@@ -5,10 +5,10 @@
 # docker
 ######################
 docker-dev:
-	UID=$(shell id -u) GID=$(shell id -g) docker compose -f docker-compose.dev.yml up --build
+	docker compose -f .devcontainer/docker-compose.yml up --build
 
 docker-dev-down:
-	docker compose -f docker-compose.dev.yml down
+	docker compose -f .devcontainer/docker-compose.yml down
 
 docker-prod:
 	docker compose up --build
