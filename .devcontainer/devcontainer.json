@@ -1,7 +1,7 @@
 {
-  "name": "2.0 website (backend dev)",
+  "name": "2.0 website (full stack)",
   "dockerComposeFile": "docker-compose.yml",
-  "service": "backend",
+  "service": "dev",
   "workspaceFolder": "/workspace",
   "shutdownAction": "stopCompose",
   "features": {
@@ -14,12 +14,15 @@
   },
   "remoteUser": "vscode",
   "forwardPorts": [5089, 5173, 3306],
-  "postCreateCommand": "sudo chown -R vscode:vscode /workspace && dotnet restore \"src/backend/2.0 website.sln\"",
+  "postCreateCommand": "sudo chown -R vscode:vscode /workspace && dotnet restore \"src/backend/2.0 website.sln\" && npm ci --prefix src/frontend",
   "postStartCommand": "dotnet build \"src/backend/2.0 website.sln\" -clp:ErrorsOnly",
   "customizations": {
     "vscode": {
       "extensions": [
-        "ms-dotnettools.csdevkit"
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.csharp",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
       ],
       "settings": {
         "dotnet.defaultSolution": "src/backend/2.0 website.sln"

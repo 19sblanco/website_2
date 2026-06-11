@@ -3,15 +3,10 @@
   "configurations": [
     {
       "name": "Backend (.NET)",
-      "type": "coreclr",
+      "type": "dotnet",
       "request": "launch",
-      "preLaunchTask": "build-backend",
-      "program": "${workspaceFolder}/src/backend/WebServer/bin/Debug/net10.0/WebServer.dll",
-      "cwd": "${workspaceFolder}/src/backend/WebServer",
-      "env": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_URLS": "http://localhost:5089"
-      }
+      "projectPath": "${workspaceFolder}/src/backend/WebServer/WebServer.csproj",
+      "launchConfigurationId": "TargetFramework=net10.0;http"
     },
     {
       "name": "Frontend (React)",

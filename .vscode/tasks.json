@@ -12,7 +12,6 @@
       "type": "shell",
       "command": "make frontend",
       "isBackground": true,
-      "dependsOn": "build-frontend",
       "problemMatcher": {
         "owner": "custom",
         "pattern": {

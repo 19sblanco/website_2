@@ -1,32 +1,26 @@
-# Standalone compose for the Dev Container. Brings up the full dev stack; the editor
-# attaches to `backend` so Roslyn and dotnet share one set of build artifacts.
+# Dev Container compose: IDE attaches to `dev`; API and Vite run as processes inside it.
 services:
-  backend:
+  dev:
     build:
-      context: ../src/backend
-      dockerfile: Dockerfile.dev
+      context: .
+      dockerfile: Dockerfile
     command: sleep infinity
     working_dir: /workspace
     ports:
       - "5089:5089"
+      - "5173:5173"
     volumes:
       - ..:/workspace:cached
       - backend-obj:/workspace/src/backend/WebServer/obj
       - backend-bin:/workspace/src/backend/WebServer/bin
       - backend-tests-obj:/workspace/src/backend/WebServer.Tests/obj
       - backend-tests-bin:/workspace/src/backend/WebServer.Tests/bin
-
-  frontend:
-    build:
-      context: ../src/frontend
-      dockerfile: Dockerfile.dev
-    ports:
-      - "5173:5173"
-    volumes:
-      - ../src/frontend:/app
-      - /app/node_modules
+      - frontend-node_modules:/workspace/src/frontend/node_modules
     depends_on:
-      - backend
+      database:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
 
   database:
     image: mysql:8.0
@@ -40,10 +34,17 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-pmysql"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
 
 volumes:
   backend-obj:
   backend-bin:
   backend-tests-obj:
   backend-tests-bin:
+  frontend-node_modules:
   mysql_data:

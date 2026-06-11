@@ -2,6 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
+import { apiUrl } from "./api";
 import "./App.css";
 
 function TestPage() {
@@ -9,9 +10,7 @@ function TestPage() {
   const [weather, setWeather] = useState(null);
 
   const fetchWeather = async () => {
-    const response = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/web/weatherforecast`,
-    );
+    const response = await fetch(apiUrl("/api/web/weatherforecast"));
     const data = await response.json();
     setWeather(JSON.stringify(data, null, 2));
   };

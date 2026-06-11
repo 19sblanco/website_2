@@ -13,6 +13,7 @@ import cSharpLogo from "./assets/cSharpLogo.png";
 import sacredOSLogo from "./assets/sacredOSLogo.png";
 import travelingSalesmanProjectLogo from "./assets/travelingSalesmanProjectLogo.png";
 import raspberryPiServerLogo from "./assets/raspberryPiWebsiteServer.jpeg";
+import { apiUrl } from "./api";
 import "./landingPage.css";
 
 function LandingPage() {
@@ -24,8 +25,6 @@ function LandingPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const [statusType, setStatusType] = useState("success");
-  const apiUrl = import.meta.env.VITE_API_URL ?? "/api";
-
   const handleContactChange = (event) => {
     const { name, value } = event.target;
     setContactForm((prev) => ({ ...prev, [name]: value }));
@@ -38,7 +37,7 @@ function LandingPage() {
     setStatusType("success");
 
     try {
-      const response = await fetch(`${apiUrl}/api/web/contact`, {
+      const response = await fetch(apiUrl("/api/web/contact"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

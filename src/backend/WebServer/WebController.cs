@@ -25,13 +25,16 @@ namespace WebServer
         public IActionResult GetWeather()
         {
             string result = _weatherService.WeatherForcast();
-            return Ok(result);
+            return Content(result, "application/json");
         }
 
         [HttpPost("contact")]
         public IActionResult PostContact(ContactRequest request)
         {
-            if (request == null || string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Message))
+            if (request == null
+                || string.IsNullOrWhiteSpace(request.Name)
+                || string.IsNullOrWhiteSpace(request.Email)
+                || string.IsNullOrWhiteSpace(request.Message))
             {
                 return BadRequest("Name, email, and message are required.");
             }
