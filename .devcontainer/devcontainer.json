@@ -14,7 +14,7 @@
   },
   "remoteUser": "vscode",
   "forwardPorts": [5089, 5173, 3306],
-  "postCreateCommand": "sudo chown -R vscode:vscode /workspace && dotnet restore \"src/backend/2.0 website.sln\" && npm ci --prefix src/frontend",
+  "postCreateCommand": "sudo chown -R vscode:vscode /workspace && dotnet restore \"src/backend/2.0 website.sln\" && npm ci --prefix src/frontend && npm run e2e:install --prefix src/frontend",
   "postStartCommand": "dotnet build \"src/backend/2.0 website.sln\" -clp:ErrorsOnly",
   "customizations": {
     "vscode": {

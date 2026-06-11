@@ -16,6 +16,7 @@ services:
       - backend-tests-obj:/workspace/src/backend/WebServer.Tests/obj
       - backend-tests-bin:/workspace/src/backend/WebServer.Tests/bin
       - frontend-node_modules:/workspace/src/frontend/node_modules
+      - playwright-cache:/home/vscode/.cache/ms-playwright
     depends_on:
       database:
         condition: service_healthy
@@ -47,4 +48,5 @@ volumes:
   backend-tests-obj:
   backend-tests-bin:
   frontend-node_modules:
+  playwright-cache:
   mysql_data:

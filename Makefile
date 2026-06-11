@@ -12,7 +12,7 @@ define require_cmd
 	}
 endef
 
-.PHONY: help install backend frontend format-frontend lint-frontend build-frontend \
+.PHONY: help install install-e2e backend frontend format-frontend lint-frontend build-frontend \
 	verify-frontend format-backend build-backend verify-backend verify-all \
 	test-frontend test-backend test-e2e test-all \
 	docker-dev docker-dev-down docker-prod docker-prod-down \
@@ -20,7 +20,8 @@ endef
 
 help:
 	@echo "Dev container (Reopen in Container):"
-	@echo "  make install           Install frontend + backend dependencies"
+	@echo "  make install           Install frontend + backend deps + Playwright browsers"
+	@echo "  make install-e2e       Download Playwright browser binaries"
 	@echo "  make backend           Run ASP.NET API on :5089"
 	@echo "  make frontend          Start Vite dev server on :5173"
 	@echo "  make verify-all        Format, lint, and build both stacks"
@@ -41,6 +42,11 @@ install:
 	$(call require_cmd,npm)
 	dotnet restore "$(BACKEND_SOLUTION)"
 	npm ci --prefix $(FRONTEND_DIR)
+	$(MAKE) install-e2e
+
+install-e2e:
+	$(call require_cmd,npm)
+	npm run e2e:install --prefix $(FRONTEND_DIR)
 
 
 ######################
@@ -117,7 +123,7 @@ test-frontend:
 test-backend:
 	dotnet test src/backend
 
-test-e2e:
+test-e2e: install-e2e
 	$(call require_cmd,npm)
 	npm run e2e --prefix $(FRONTEND_DIR)
 

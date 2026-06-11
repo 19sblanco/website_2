@@ -10,8 +10,10 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "preview": "vite preview",
-    "unit": "vitest",
-    "e2e": "playwright test"
+    "unit": "vitest run",
+    "unit:watch": "vitest",
+    "e2e": "playwright test",
+    "e2e:install": "playwright install --with-deps chromium firefox"
   },
   "dependencies": {
     "react": "^19.2.4",
