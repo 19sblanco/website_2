@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import pythonLogo from "./assets/pythonLogo.png";
@@ -14,9 +14,11 @@ import sacredOSLogo from "./assets/sacredOSLogo.png";
 import travelingSalesmanProjectLogo from "./assets/travelingSalesmanProjectLogo.png";
 import raspberryPiServerLogo from "./assets/raspberryPiWebsiteServer.jpeg";
 import { apiUrl } from "./api";
+import { apiHeaders, ensureVisit, logEventThenNavigate } from "./traffic";
 import "./landingPage.css";
 
 function LandingPage() {
+  const visitTracked = useRef(false);
   const [contactForm, setContactForm] = useState({
     name: "",
     email: "",
@@ -25,9 +27,25 @@ function LandingPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const [statusType, setStatusType] = useState("success");
+
+  useEffect(() => {
+    if (visitTracked.current) {
+      return;
+    }
+    visitTracked.current = true;
+    ensureVisit().catch((error) => {
+      console.warn("Visit tracking failed", error);
+    });
+  }, []);
+
   const handleContactChange = (event) => {
     const { name, value } = event.target;
     setContactForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleTrackedClick = (event, eventName, detail, navigate) => {
+    event.preventDefault();
+    logEventThenNavigate(eventName, detail, navigate);
   };
 
   const handleContactSubmit = async (event) => {
@@ -37,11 +55,10 @@ function LandingPage() {
     setStatusType("success");
 
     try {
+      await ensureVisit();
       const response = await fetch(apiUrl("/api/web/contact"), {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: apiHeaders({ "Content-Type": "application/json" }),
         body: JSON.stringify(contactForm),
       });
 
@@ -261,6 +278,7 @@ function LandingPage() {
               That website attracted 1000's of unique visitors"
               link="https://steven-blanco.com/"
               logo={raspberryPiServerLogo}
+              onProjectClick={handleTrackedClick}
             />
             <ProjectCard
               cardName="SacredOS OS Contribution"
@@ -268,6 +286,7 @@ function LandingPage() {
               to its app store."
               link="https://sacred.neocities.org/"
               logo={sacredOSLogo}
+              onProjectClick={handleTrackedClick}
             />
             <ProjectCard
               cardName="Traveling Salesman Simulation"
@@ -275,6 +294,7 @@ function LandingPage() {
               This was a self study into code optimization."
               link="https://github.com/19sblanco/tsp_c"
               logo={travelingSalesmanProjectLogo}
+              onProjectClick={handleTrackedClick}
             />
           </div>
         </section>
@@ -287,6 +307,11 @@ function LandingPage() {
             target="_blank"
             rel="noreferrer"
             className="resume-link"
+            onClick={(event) =>
+              handleTrackedClick(event, "clicked_resume", undefined, () =>
+                window.open("/Resume.pdf", "_blank", "noopener,noreferrer"),
+              )
+            }
           >
             Download Resume
           </a>
@@ -359,20 +384,6 @@ function LandingPage() {
               {statusMessage}
             </div>
           )}
-
-          <div className="contact-links">
-            <a className="contact-link" href="mailto:steven.blanc521@gmail.com">
-              steven.blanc521@gmail.com
-            </a>
-            <a
-              className="contact-link"
-              href="https://www.linkedin.com/in/steven-blanco-b69553199/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn: Steven Blanco
-            </a>
-          </div>
         </section>
       </main>
       <Footer />
@@ -380,9 +391,19 @@ function LandingPage() {
   );
 }
 
-function ProjectCard({ cardName, description, link, logo }) {
+function ProjectCard({ cardName, description, link, logo, onProjectClick }) {
   return (
-    <a className="project-card" href={link} target="_blank" rel="noreferrer">
+    <a
+      className="project-card"
+      href={link}
+      target="_blank"
+      rel="noreferrer"
+      onClick={(event) =>
+        onProjectClick?.(event, "clicked_project", cardName, () =>
+          window.open(link, "_blank", "noopener,noreferrer"),
+        )
+      }
+    >
       {logo && (
         <div className="project-card-image">
           <img className="project-card-logo" src={logo} alt={cardName} />

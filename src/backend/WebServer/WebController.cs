@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebServer.Entities;
@@ -19,8 +20,13 @@ public class VisitRequest
 
 public class EventRequest
 {
+    [JsonPropertyName("event")]
     public string? Event { get; set; }
+
+    [JsonPropertyName("eventId")]
     public int? EventId { get; set; }
+
+    [JsonPropertyName("detail")]
     public string? Detail { get; set; }
 }
 
@@ -123,7 +129,7 @@ public class WebController(IWeather weatherService, MyDbContext db) : Controller
             evt = await _db.Events.FirstOrDefaultAsync(e => e.Event == request.Event);
             if (evt == null)
             {
-                return NotFound($"Unknown event: {request.Event}");
+                return NotFound(new { error = $"Unknown event: {request.Event}" });
             }
         }
         else if (request.EventId.HasValue)
@@ -131,7 +137,7 @@ public class WebController(IWeather weatherService, MyDbContext db) : Controller
             evt = await _db.Events.FirstOrDefaultAsync(e => e.Id == request.EventId.Value);
             if (evt == null)
             {
-                return NotFound($"Unknown event id: {request.EventId}");
+                return NotFound(new { error = $"Unknown event id: {request.EventId}" });
             }
         }
         else

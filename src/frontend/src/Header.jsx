@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { logEvent } from "./traffic";
 import "./Header.css";
 
 function Header() {
@@ -6,6 +7,12 @@ function Header() {
   const [copyStatus, setCopyStatus] = useState("Copy");
 
   const handleCopy = async () => {
+    try {
+      await logEvent("clicked_copy_email");
+    } catch (error) {
+      console.warn("Event logging failed", error);
+    }
+
     try {
       await navigator.clipboard.writeText(email);
       setCopyStatus("Copied!");

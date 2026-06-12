@@ -78,7 +78,7 @@ docker-build-dev:
 # run projects
 ######################
 backend:
-	dotnet run --project $(BACKEND_PROJECT)
+	dotnet watch run --project $(BACKEND_PROJECT)
 
 frontend:
 	$(call require_cmd,npm)
