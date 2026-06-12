@@ -1,61 +1,128 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebServer.Entities;
 
-namespace WebServer
+namespace WebServer;
+
+public class ContactRequest
 {
-    public class ContactRequest
+    public string Name { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string Message { get; set; } = string.Empty;
+}
+
+public class VisitRequest
+{
+    public string SessionId { get; set; } = string.Empty;
+    public string? Referer { get; set; }
+}
+
+[Route("api/[controller]")]
+[ApiController]
+public class WebController(IWeather weatherService, MyDbContext db) : ControllerBase
+{
+    private readonly IWeather _weatherService = weatherService;
+    private readonly MyDbContext _db = db;
+
+    [HttpGet("weatherforecast")]
+    public IActionResult GetWeather()
     {
-        public string Name { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
-        public string Message { get; set; } = string.Empty;
+        string result = _weatherService.WeatherForcast();
+        return Content(result, "application/json");
     }
 
-    [Route("api/[controller]")]
-    [ApiController]
-    public class WebController : ControllerBase
+    [HttpPost("visit")]
+    public async Task<IActionResult> PostVisit([FromBody] VisitRequest request)
     {
-        private readonly IWeather _weatherService;
-
-        public WebController(IWeather weatherService)
+        var sessionId = request.SessionId;
+        if (string.IsNullOrWhiteSpace(sessionId))
         {
-            _weatherService = weatherService;
+            sessionId = Request.Headers["X-Session-Id"].FirstOrDefault() ?? Guid.NewGuid().ToString();
         }
 
-        [HttpGet("weatherforecast")]
-        public IActionResult GetWeather()
+        if (sessionId.Length > 64)
         {
-            string result = _weatherService.WeatherForcast();
-            return Content(result, "application/json");
+            sessionId = sessionId[..64];
         }
 
-        [HttpPost("contact")]
-        public IActionResult PostContact(ContactRequest request)
+        var userAgent = Request.Headers.UserAgent.ToString();
+        if (string.IsNullOrWhiteSpace(userAgent))
         {
-            if (request == null
-                || string.IsNullOrWhiteSpace(request.Name)
-                || string.IsNullOrWhiteSpace(request.Email)
-                || string.IsNullOrWhiteSpace(request.Message))
-            {
-                return BadRequest("Name, email, and message are required.");
-            }
-
-            var context = HttpContext.RequestServices.GetRequiredService<MyDbContext>();
-            var contact = new WebServer.Entities.Contact
-            {
-                Name = request.Name,
-                Email = request.Email,
-                Message = request.Message,
-                TrafficId = context.TrafficLogs.FirstOrDefault(t => t.SessionId == HttpContext.Session.Id)?.Id ?? null,
-            };
-            context.Contacts.Add(contact);
-            context.SaveChanges();
-
-            // In a real application, this is where you'd save the message, send an email,
-            // or forward it to your notification service.
-            Console.WriteLine($"Contact request received from {request.Name} <{request.Email}>: {request.Message}");
-
-            return Ok(new { message = "Contact request received." });
+            userAgent = "unknown";
         }
+
+        var referer = request.Referer;
+        if (string.IsNullOrWhiteSpace(referer))
+        {
+            referer = Request.Headers.Referer.ToString();
+        }
+
+        if (string.IsNullOrWhiteSpace(referer))
+        {
+            referer = "direct";
+        }
+
+        var traffic = new TrafficLogs
+        {
+            SessionId = sessionId,
+            UserAgent = Truncate(userAgent, 512),
+            Referer = Truncate(referer, 2048),
+        };
+
+        _db.TrafficLogs.Add(traffic);
+        await _db.SaveChangesAsync();
+
+        return Ok(new { trafficId = traffic.Id, sessionId });
     }
+
+    [HttpPost("contact")]
+    public async Task<IActionResult> PostContact(ContactRequest request)
+    {
+        if (request == null
+            || string.IsNullOrWhiteSpace(request.Name)
+            || string.IsNullOrWhiteSpace(request.Email)
+            || string.IsNullOrWhiteSpace(request.Message))
+        {
+            return BadRequest("Name, email, and message are required.");
+        }
+
+        var trafficId = await ResolveTrafficIdAsync();
+
+        var contact = new Contact
+        {
+            Name = request.Name,
+            Email = request.Email,
+            Message = request.Message,
+            TrafficId = trafficId,
+        };
+
+        _db.Contacts.Add(contact);
+        await _db.SaveChangesAsync();
+
+        return Ok(new { message = "Contact request received." });
+    }
+
+    private async Task<int?> ResolveTrafficIdAsync()
+    {
+        if (Request.Headers.TryGetValue("X-Traffic-Id", out var trafficHeader)
+            && int.TryParse(trafficHeader.FirstOrDefault(), out var trafficId))
+        {
+            return await _db.TrafficLogs.AnyAsync(t => t.Id == trafficId) ? trafficId : null;
+        }
+
+        var sessionId = Request.Headers["X-Session-Id"].FirstOrDefault();
+        if (string.IsNullOrWhiteSpace(sessionId))
+        {
+            return null;
+        }
+
+        return await _db.TrafficLogs
+            .Where(t => t.SessionId == sessionId)
+            .OrderByDescending(t => t.Id)
+            .Select(t => (int?)t.Id)
+            .FirstOrDefaultAsync();
+    }
+
+    private static string Truncate(string value, int maxLength) =>
+        value.Length <= maxLength ? value : value[..maxLength];
 }
