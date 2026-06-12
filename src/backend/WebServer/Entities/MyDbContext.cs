@@ -2,15 +2,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebServer.Entities;
 
-public class MyDbContext : DbContext
+public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(options)
 {
     public const int EventClickedResume = 1;
     public const int EventClickedProject = 2;
     public const int EventClickedCopyEmail = 3;
-
-    public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
-    {
-    }
 
     public DbSet<Contact> Contacts => Set<Contact>();
     public DbSet<Events> Events => Set<Events>();
@@ -37,7 +33,8 @@ public class MyDbContext : DbContext
                 .IsRequired();
 
             entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
 
             entity.HasOne(e => e.Traffic)
                 .WithMany(t => t.Contacts)
@@ -64,7 +61,8 @@ public class MyDbContext : DbContext
                 .IsRequired();
 
             entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
         });
 
         modelBuilder.Entity<Events>(entity =>
@@ -97,7 +95,8 @@ public class MyDbContext : DbContext
                 .HasMaxLength(255);
 
             entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                .HasColumnType("datetime(6)")
+                .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
 
             entity.HasOne(e => e.Event)
                 .WithMany(ev => ev.EventLogs)

@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using WebServer;
 using WebServer.Entities;
 
@@ -50,5 +49,12 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.MapControllers();
+
+if (builder.Configuration.GetValue<bool>("MigrateDatabase"))
+{
+    using var scope = app.Services.CreateScope();
+    var context = scope.ServiceProvider.GetRequiredService<MyDbContext>();
+    context.Database.Migrate();
+}
 
 app.Run();

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebServer.Entities;
 
 namespace WebServer
 {
@@ -38,6 +39,17 @@ namespace WebServer
             {
                 return BadRequest("Name, email, and message are required.");
             }
+
+            var context = HttpContext.RequestServices.GetRequiredService<MyDbContext>();
+            var contact = new WebServer.Entities.Contact
+            {
+                Name = request.Name,
+                Email = request.Email,
+                Message = request.Message,
+                TrafficId = context.TrafficLogs.FirstOrDefault(t => t.SessionId == HttpContext.Session.Id)?.Id ?? null,
+            };
+            context.Contacts.Add(contact);
+            context.SaveChanges();
 
             // In a real application, this is where you'd save the message, send an email,
             // or forward it to your notification service.

@@ -11,5 +11,6 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 ENV DOTNET_USE_POLLING_FILE_WATCHER=1
+ENV PATH="${PATH}:/home/vscode/.dotnet/tools"
 
 WORKDIR /workspace
