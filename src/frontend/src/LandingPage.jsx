@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import pythonLogo from "./assets/pythonLogo.png";
@@ -86,9 +87,9 @@ function LandingPage() {
         <section id="hero" className="section hero-section">
           <h1 className="hero-role">Full Stack Software Engineer</h1>
           <h1 className="hero-name">Steven Blanco</h1>
-          <a href="#projects" className="btn-pill-black">
+          <Link to="/about" className="btn-pill-black">
             About me
-          </a>
+          </Link>
         </section>
 
         <section className="tech-stack-row">
@@ -256,7 +257,7 @@ function LandingPage() {
             />
             <ExperienceItem
               title="Junior Software Engineer/Developer"
-              company="Digital Creations"
+              company="CorEMR"
               period="July 2025 - January 2026"
               description="Helped maintain and build new features in a web based electronic medical records system written in HTML, CSS, Javascript, and PHP. I implimented features based on stake holders requests, presented system findings to the dev team, and pushed for new features for a better overall product."
             />

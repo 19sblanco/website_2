@@ -38,10 +38,14 @@ function Header() {
         </button>
       </div>
       <div className="header-right">
-        <a href="https://linkedin.com" target="_blank" rel="noreferrer">
+        <a
+          href="https://www.linkedin.com/in/steven-blanco-b69553199/"
+          target="_blank"
+          rel="noreferrer"
+        >
           LinkedIn
         </a>
-        <a href="https://github.com" target="_blank" rel="noreferrer">
+        <a href="https://github.com/19sblanco" target="_blank" rel="noreferrer">
           GitHub
         </a>
       </div>

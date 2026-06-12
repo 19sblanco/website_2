@@ -1,0 +1,134 @@
+.about-page {
+  flex: 1;
+}
+
+.about-page-section {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-lg);
+  text-align: left;
+}
+
+.about-intro-row {
+  display: grid;
+  grid-template-columns: minmax(200px, 280px) 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+  padding-bottom: var(--space-2xl);
+  border-bottom: 1px solid var(--border);
+}
+
+.about-photo-slot {
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 280px;
+  border-radius: var(--radius-lg);
+  border: 2px dashed var(--border);
+  background: var(--code-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about-photo-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-photo-placeholder {
+  color: var(--muted, #6b7280);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.about-intro-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.about-intro-label {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+
+.about-name {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 600;
+  color: var(--text-h);
+  letter-spacing: -0.02em;
+}
+
+.about-tagline {
+  margin: var(--space-sm) 0 0;
+  font-size: var(--font-size-lg);
+  line-height: 1.65;
+  color: var(--text);
+  max-width: 42ch;
+}
+
+.about-long-description {
+  padding-top: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.about-long-heading {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.about-long-description p {
+  margin: 0;
+  font-size: var(--font-size-md);
+  line-height: 1.75;
+  color: var(--text);
+  max-width: 65ch;
+}
+
+.about-back-link {
+  display: inline-block;
+  margin-top: var(--space-2xl);
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity var(--transition-base);
+}
+
+.about-back-link:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 720px) {
+  .about-intro-row {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .about-photo-slot {
+    max-width: 220px;
+  }
+
+  .about-intro-text {
+    align-items: center;
+  }
+
+  .about-tagline,
+  .about-long-description p {
+    max-width: none;
+  }
+}
