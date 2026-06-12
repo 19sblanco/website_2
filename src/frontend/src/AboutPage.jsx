@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import headshot from "./assets/headshot.JPG";
 import "./aboutPage.css";
 
 function AboutPage() {
@@ -10,16 +11,15 @@ function AboutPage() {
       <main className="main-content about-page">
         <section className="about-page-section">
           <div className="about-intro-row">
-            <div className="about-photo-slot" aria-label="Headshot placeholder">
-              <span className="about-photo-placeholder">Your photo</span>
+            <div className="about-photo-slot">
+              <img src={headshot} alt="Steven Blanco" />
             </div>
 
             <div className="about-intro-text">
               <p className="about-intro-label">About</p>
-              <h1 className="about-name">Steven Blanco</h1>
               <p className="about-tagline">
-                Full stack software engineer who enjoys building reliable web
-                applications and learning new tools along the way.
+                I'm a full stack software engineer with 2 years of experience
+                who enjoys building projects in my free time.
               </p>
             </div>
           </div>
@@ -27,17 +27,14 @@ function AboutPage() {
           <div className="about-long-description">
             <h2 className="about-long-heading">A little more about me</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-              ut aliquip ex ea commodo consequat.
+              I'm a graduate from the University of Utah with a Bachelor's
+              degree in Computer Science, earning a 3.7/4.0 GPA and the
+              information track certificate.
             </p>
             <p>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-              cupidatat non proident, sunt in culpa qui officia deserunt mollit
-              anim id est laborum. Replace this block with your own story,
-              background, and what you are looking for next.
+              I enjoy not only building projects in my free time but taking the
+              time to get a deeper understanding of the technologies I use.
+              Because of this I spend most of my time reading and coding.
             </p>
           </div>
 
