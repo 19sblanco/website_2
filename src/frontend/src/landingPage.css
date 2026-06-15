@@ -92,13 +92,17 @@
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+  grid-template-columns: repeat(6, 1fr);
   gap: var(--space-xl);
   margin-top: var(--space-lg);
-  justify-content: center;
+  max-width: 1024px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .project-card {
+  grid-column: span 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -114,6 +118,54 @@
     box-shadow var(--transition-base),
     border-color var(--transition-base),
     transform var(--transition-base);
+}
+
+.project-card:last-child:nth-child(3n + 1) {
+  grid-column: 3 / span 2;
+}
+
+.project-card:nth-last-child(2):nth-child(3n + 1) {
+  grid-column: 2 / span 2;
+}
+
+.project-card:last-child:nth-child(3n + 2) {
+  grid-column: span 2;
+}
+
+.projects-more {
+  margin-top: var(--space-xl);
+  font-size: var(--font-size-md);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.projects-more a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.projects-more a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-card,
+  .project-card:last-child:nth-child(3n + 1),
+  .project-card:nth-last-child(2):nth-child(3n + 1),
+  .project-card:last-child:nth-child(3n + 2) {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .project-card-image {

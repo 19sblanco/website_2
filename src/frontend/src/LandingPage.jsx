@@ -14,6 +14,8 @@ import cSharpLogo from "./assets/cSharpLogo.png";
 import sacredOSLogo from "./assets/sacredOSLogo.png";
 import travelingSalesmanProjectLogo from "./assets/travelingSalesmanProjectLogo.png";
 import raspberryPiServerLogo from "./assets/raspberryPiWebsiteServer.jpeg";
+import speedReadLogo from "./assets/speedRead.png";
+import LMSLogo from "./assets/LMS.png";
 import { apiUrl } from "./api";
 import { apiHeaders, ensureVisit, logEventThenNavigate } from "./traffic";
 import "./landingPage.css";
@@ -297,7 +299,35 @@ function LandingPage() {
               logo={travelingSalesmanProjectLogo}
               onProjectClick={handleTrackedClick}
             />
+            <ProjectCard
+              cardName="Learning Management System"
+              description="I created the controller and datamodel for a learning management system. This was a project
+              for my Database systems class"
+              link="https://github.com/19sblanco/CS5530-Database-Systems"
+              logo={LMSLogo}
+              onProjectClick={handleTrackedClick}
+            />
+            <ProjectCard
+              cardName="SpeedRead"
+              description="Speed Read is a commandline tool to help users read faster. 
+              It displays text line by line on the screen with an adjustable timer. 
+              SpeedRead also allows users to upload their own reading content by url."
+              link="https://github.com/19sblanco/Speed_Read_Python"
+              logo={speedReadLogo}
+              onProjectClick={handleTrackedClick}
+            />
           </div>
+          <p className="projects-more">
+            For more projects, check out my{" "}
+            <a
+              href="https://github.com/19sblanco"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
+            .
+          </p>
         </section>
 
         <section id="resume" className="section resume-section">
