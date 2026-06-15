@@ -8,7 +8,7 @@ import sqlLogo from "./assets/sqlLogo.png";
 import googleCloudLogo from "./assets/googleCloudLogo.png";
 import dockerLogo from "./assets/dockerLogo.png";
 import gitLogo from "./assets/gitLogo.png";
-import reactLogo from "./assets/reactLogo.png";
+import reactLogo from "./assets/react.svg";
 import javaLogo from "./assets/javaLogo.png";
 import cSharpLogo from "./assets/cSharpLogo.png";
 import sacredOSLogo from "./assets/sacredOSLogo.png";
@@ -314,7 +314,7 @@ function LandingPage() {
               )
             }
           >
-            Download Resume
+            View Resume
           </a>
         </section>
 
