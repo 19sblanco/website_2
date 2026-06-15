@@ -1,6 +1,7 @@
 # Dev Container compose: IDE attaches to `dev`; API and Vite run as processes inside it.
 services:
   dev:
+    image: 2.0-website-devcontainer:latest
     build:
       context: .
       dockerfile: Dockerfile

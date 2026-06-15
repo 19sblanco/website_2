@@ -7,7 +7,7 @@ RUN ln -sf /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
     && ln -sf /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends make \
+    && apt-get install -y --no-install-recommends make default-mysql-client \
     && rm -rf /var/lib/apt/lists/*
 
 ENV DOTNET_USE_POLLING_FILE_WATCHER=1

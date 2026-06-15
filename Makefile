@@ -12,7 +12,7 @@ define require_cmd
 	}
 endef
 
-.PHONY: help install install-e2e backend frontend format-frontend lint-frontend build-frontend \
+.PHONY: help install install-e2e backend frontend db-connect format-frontend lint-frontend build-frontend \
 	verify-frontend format-backend build-backend verify-backend verify-all \
 	test-frontend test-backend test-e2e test-all \
 	docker-dev docker-dev-down docker-prod docker-prod-down \
@@ -24,6 +24,7 @@ help:
 	@echo "  make install-e2e       Download Playwright browser binaries"
 	@echo "  make backend           Run ASP.NET API on :5089"
 	@echo "  make frontend          Start Vite dev server on :5173"
+	@echo "  make db-connect        Open MySQL shell (portfolio database)"
 	@echo "  make verify-all        Format, lint, and build both stacks"
 	@echo "  make test-all          Run all unit tests"
 	@echo ""
@@ -83,6 +84,10 @@ backend:
 frontend:
 	$(call require_cmd,npm)
 	npm run dev --prefix $(FRONTEND_DIR)
+
+db-connect:
+	$(call require_cmd,mysql)
+	mysql -h database -u appuser -pappsecret portfolio
 
 
 ######################
