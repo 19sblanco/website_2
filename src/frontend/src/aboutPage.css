@@ -75,6 +75,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
+  width: 100%;
 }
 
 .about-long-heading {
@@ -82,27 +83,24 @@
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--text-h);
+  display: flex;
+  justify-content: center;
 }
 
 .about-long-description p {
   margin: 0;
+  width: 100%;
   font-size: var(--font-size-md);
   line-height: 1.75;
   color: var(--text);
-  max-width: 65ch;
 }
 
-.about-back-link {
-  display: inline-block;
+.about-page-section .btn-pill-black {
   margin-top: var(--space-2xl);
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 500;
-  transition: opacity var(--transition-base);
-}
-
-.about-back-link:hover {
-  opacity: 0.8;
+  display: flex;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (max-width: 720px) {
@@ -120,8 +118,7 @@
     align-items: center;
   }
 
-  .about-tagline,
-  .about-long-description p {
+  .about-tagline {
     max-width: none;
   }
 }

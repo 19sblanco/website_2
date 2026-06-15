@@ -28,27 +28,6 @@
   width: 100%;
 }
 
-.btn-pill-black {
-  background: #000;
-  color: #fff;
-  padding: 14px 32px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1.1rem;
-  transition:
-    transform 0.2s,
-    background 0.2s;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.btn-pill-black:hover {
-  transform: scale(1.05);
-  background: #222;
-}
-
 .tech-stack-row {
   padding: 80px 0;
   overflow: hidden;
@@ -155,6 +134,10 @@
   width: 100%;
 }
 
+.resume-section .btn-pill-black {
+  margin-top: var(--space-md);
+}
+
 .contact-section {
   display: flex;
   flex-direction: column;
@@ -192,7 +175,7 @@
 
 .contact-submit {
   width: fit-content;
-  align-self: flex-start;
+  justify-self: center;
 }
 
 .contact-status {

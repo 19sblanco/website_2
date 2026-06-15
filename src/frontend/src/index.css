@@ -122,22 +122,40 @@ body {
   color: #000;
 }
 
-.resume-link {
-  display: inline-block;
-  margin-top: var(--space-md);
-  padding: 10px 20px;
-  border: 1px solid var(--accent);
-  border-radius: var(--radius-md);
-  color: var(--accent);
+.btn-pill-black {
+  background: #000;
+  color: #fff;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 30px;
   text-decoration: none;
   font-weight: 500;
+  font-size: 1.1rem;
+  font-family: inherit;
+  cursor: pointer;
   transition:
-    background var(--transition-base),
-    color var(--transition-base);
+    transform 0.2s,
+    background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
-.resume-link:hover {
-  background: var(--accent-bg);
+.btn-pill-black:hover {
+  transform: scale(1.05);
+  background: #222;
+}
+
+.btn-pill-black:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-pill-black:disabled:hover {
+  transform: none;
+  background: #000;
 }
 
 .site-footer {

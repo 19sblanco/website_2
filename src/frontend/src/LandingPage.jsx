@@ -307,7 +307,7 @@ function LandingPage() {
             href="/Resume.pdf"
             target="_blank"
             rel="noreferrer"
-            className="resume-link"
+            className="btn-pill-black"
             onClick={(event) =>
               handleTrackedClick(event, "clicked_resume", undefined, () =>
                 window.open("/Resume.pdf", "_blank", "noopener,noreferrer"),
@@ -367,7 +367,7 @@ function LandingPage() {
 
             <button
               type="submit"
-              className="resume-link contact-submit"
+              className="btn-pill-black contact-submit"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Sending…" : "Send message"}
