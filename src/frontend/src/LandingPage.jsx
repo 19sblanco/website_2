@@ -309,7 +309,7 @@ function LandingPage() {
             />
             <ProjectCard
               cardName="SpeedRead"
-              description="Speed Read is a commandline tool to help users read faster. 
+              description="SpeedRead is an open source tool I created to help users read faster. 
               It displays text line by line on the screen with an adjustable timer. 
               SpeedRead also allows users to upload their own reading content by url."
               link="https://github.com/19sblanco/Speed_Read_Python"
