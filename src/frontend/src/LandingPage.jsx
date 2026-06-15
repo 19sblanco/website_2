@@ -295,7 +295,7 @@ function LandingPage() {
               cardName="Traveling Salesman Simulation"
               description="I simulated the Traveling Salesman Problem using progressively optimized approaches.
               This was a self study into code optimization."
-              link="https://github.com/19sblanco/tsp_c"
+              link="https://steven-blanco.com/tsp/"
               logo={travelingSalesmanProjectLogo}
               onProjectClick={handleTrackedClick}
             />
@@ -317,17 +317,15 @@ function LandingPage() {
               onProjectClick={handleTrackedClick}
             />
           </div>
-          <p className="projects-more">
-            For more projects, check out my{" "}
-            <a
-              href="https://github.com/19sblanco"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
-            .
-          </p>
+          <p className="projects-more">For more projects, check out my</p>
+          <a
+            href="https://github.com/19sblanco"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-pill-black projects-more"
+          >
+            GitHub
+          </a>
         </section>
 
         <section id="resume" className="section resume-section">
