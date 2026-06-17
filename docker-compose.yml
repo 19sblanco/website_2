@@ -1,6 +1,7 @@
 services:
   backend:
     build: ./src/backend
+    env_file: .env
     ports:
       - "5089:5089"
 

@@ -32,10 +32,16 @@ public class EventRequest
 
 [Route("api/[controller]")]
 [ApiController]
-public class WebController(IWeather weatherService, MyDbContext db) : ControllerBase
+public class WebController(
+    IWeather weatherService,
+    MyDbContext db,
+    IContactEmailSender emailSender,
+    ILogger<WebController> logger) : ControllerBase
 {
     private readonly IWeather _weatherService = weatherService;
     private readonly MyDbContext _db = db;
+    private readonly IContactEmailSender _emailSender = emailSender;
+    private readonly ILogger<WebController> _logger = logger;
 
     [HttpGet("weatherforecast")]
     public IActionResult GetWeather()
@@ -111,6 +117,16 @@ public class WebController(IWeather weatherService, MyDbContext db) : Controller
 
         _db.Contacts.Add(contact);
         await _db.SaveChangesAsync();
+
+        try
+        {
+            await _emailSender.SendContactEmailsAsync(
+                request.Name, request.Email, request.Message);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to send contact emails");
+        }
 
         return Ok(new { message = "Contact request received." });
     }

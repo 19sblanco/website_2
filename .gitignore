@@ -28,3 +28,6 @@ Thumbs.db
 
 # notes
 notes/
+
+# Environment secrets
+.env
