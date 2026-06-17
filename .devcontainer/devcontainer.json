@@ -4,17 +4,18 @@
   "service": "dev",
   "workspaceFolder": "/workspace",
   "shutdownAction": "stopCompose",
+  "updateRemoteUserUID": true,
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": false,
       "username": "vscode",
-      "userUid": "automatic",
-      "userGid": "automatic"
+      "userUid": "1000",
+      "userGid": "1000"
     }
   },
   "remoteUser": "vscode",
   "forwardPorts": [5089, 5173, 3306],
-  "postCreateCommand": "sudo chown -R vscode:vscode /workspace && dotnet restore \"src/backend/2.0 website.sln\" && npm ci --prefix src/frontend && npm run e2e:install --prefix src/frontend",
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
   "postStartCommand": "dotnet build \"src/backend/2.0 website.sln\" -clp:ErrorsOnly",
   "customizations": {
     "vscode": {
