@@ -20,7 +20,6 @@ public class ContactEmailContentTests
     public void BuildAutoReply_UsesSenderName()
     {
         var (subject, body) = ContactEmailContent.BuildAutoReply("Jane Doe");
-        consol.log("test");
 
         Assert.Equal("Thanks for reaching out, Jane Doe", subject);
         Assert.Contains("Hi Jane Doe,", body);
