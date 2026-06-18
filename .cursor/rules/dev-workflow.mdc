@@ -13,14 +13,14 @@ Use the **Makefile** as the source of truth for commands (`make help`).
 
 ## Key commands
 
-| Target | Purpose |
-|--------|---------|
-| `make install` | Restore backend + `npm ci` frontend + Playwright browsers |
-| `make backend` | ASP.NET API on **:5089** |
-| `make frontend` | Vite dev server on **:5173** |
-| `make db-connect` | MySQL shell (`portfolio` DB) |
-| `make verify-all` | Format, lint, build both stacks |
-| `make test-all` | Unit tests (frontend + backend + e2e) |
+| Target            | Purpose                                                   |
+| ----------------- | --------------------------------------------------------- |
+| `make install`    | Restore backend + `npm ci` frontend + Playwright browsers |
+| `make backend`    | ASP.NET API on **:5089**                                  |
+| `make frontend`   | Vite dev server on **:5173**                              |
+| `make db-connect` | MySQL shell (`portfolio` DB)                              |
+| `make verify-all` | Format, lint, build both stacks                           |
+| `make test-all`   | Unit tests (frontend + backend + e2e)                     |
 
 ## Paths
 
@@ -39,3 +39,7 @@ For running without the Dev Container (requires local Docker):
 
 - `make docker-dev` / `make docker-dev-down` — dev + database via `.devcontainer/docker-compose.yml`
 - `make docker-prod` / `make docker-prod-down` — production stack via root `docker-compose.yml`
+
+## Code Style
+
+Write in a clear, simple syntax that is easy for a human to read
