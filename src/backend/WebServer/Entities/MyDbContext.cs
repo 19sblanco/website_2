@@ -52,14 +52,6 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
                 .HasMaxLength(64)
                 .IsRequired();
 
-            entity.Property(e => e.UserAgent)
-                .HasMaxLength(512)
-                .IsRequired();
-
-            entity.Property(e => e.Referer)
-                .HasMaxLength(2048)
-                .IsRequired();
-
             entity.Property(e => e.CreatedAt)
                 .HasColumnType("datetime(6)")
                 .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");

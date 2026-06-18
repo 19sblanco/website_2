@@ -59,7 +59,6 @@ export function ensureVisit() {
   if (!visitPromise) {
     visitPromise = postJson("/api/web/visit", {
       sessionId: getSessionId(),
-      referer: document.referrer || "",
     })
       .then((data) => {
         if (data?.trafficId) {
