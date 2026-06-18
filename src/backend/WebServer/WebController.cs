@@ -15,7 +15,6 @@ public class ContactRequest
 public class VisitRequest
 {
     public string SessionId { get; set; } = string.Empty;
-    public string? Referer { get; set; }
 }
 
 public class EventRequest
@@ -55,28 +54,9 @@ public class WebController(
             sessionId = sessionId[..64];
         }
 
-        var userAgent = Request.Headers.UserAgent.ToString();
-        if (string.IsNullOrWhiteSpace(userAgent))
-        {
-            userAgent = "unknown";
-        }
-
-        var referer = request.Referer;
-        if (string.IsNullOrWhiteSpace(referer))
-        {
-            referer = Request.Headers.Referer.ToString();
-        }
-
-        if (string.IsNullOrWhiteSpace(referer))
-        {
-            referer = "direct";
-        }
-
         var traffic = new TrafficLogs
         {
             SessionId = sessionId,
-            UserAgent = Truncate(userAgent, 512),
-            Referer = Truncate(referer, 2048),
         };
 
         _db.TrafficLogs.Add(traffic);
@@ -197,7 +177,4 @@ public class WebController(
             .Select(t => (int?)t.Id)
             .FirstOrDefaultAsync();
     }
-
-    private static string Truncate(string value, int maxLength) =>
-        value.Length <= maxLength ? value : value[..maxLength];
 }
