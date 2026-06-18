@@ -20,8 +20,6 @@ builder.Services.AddDbContext<MyDbContext>(options =>
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddScoped<IWeather, Weather>();
-
 builder.Services.Configure<ContactEmailOptions>(
     builder.Configuration.GetSection("ContactEmail"));
 builder.Services.AddSingleton<IContactEmailSender>(sp =>

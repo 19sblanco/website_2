@@ -33,22 +33,13 @@ public class EventRequest
 [Route("api/[controller]")]
 [ApiController]
 public class WebController(
-    IWeather weatherService,
     MyDbContext db,
     IContactEmailSender emailSender,
     ILogger<WebController> logger) : ControllerBase
 {
-    private readonly IWeather _weatherService = weatherService;
     private readonly MyDbContext _db = db;
     private readonly IContactEmailSender _emailSender = emailSender;
     private readonly ILogger<WebController> _logger = logger;
-
-    [HttpGet("weatherforecast")]
-    public IActionResult GetWeather()
-    {
-        string result = _weatherService.WeatherForcast();
-        return Content(result, "application/json");
-    }
 
     [HttpPost("visit")]
     public async Task<IActionResult> PostVisit([FromBody] VisitRequest request)
