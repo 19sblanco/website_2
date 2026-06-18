@@ -9,23 +9,26 @@
   border-bottom: none;
 }
 
-.hero-role {
-  font-size: min(4.5rem, 10vw);
-  font-weight: 500;
-  margin-bottom: 80px;
+.hero-role,
+.hero-name {
+  font-size: clamp(1.75rem, 6.5vw, 4.5rem);
+  line-height: 1.15;
   color: #000;
-  letter-spacing: -1.5px;
+  letter-spacing: -0.02em;
   width: 100%;
+  max-width: 100%;
+  text-wrap: balance;
+}
+
+.hero-role {
+  font-weight: 500;
+  margin-bottom: clamp(2.5rem, 10vh, 5rem);
 }
 
 .hero-name {
-  font-size: min(4.5rem, 10vw);
   font-weight: 400;
   margin-top: 0;
-  margin-bottom: 70px;
-  color: #000;
-  letter-spacing: -1.5px;
-  width: 100%;
+  margin-bottom: clamp(2.5rem, 8vh, 4.375rem);
 }
 
 .tech-stack-row {
@@ -183,6 +186,23 @@
   gap: 18px;
   max-width: 720px;
   margin: 0 auto;
+}
+
+.contact-privacy-notice {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  color: var(--text);
+  text-align: center;
+}
+
+.contact-privacy-notice a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.contact-privacy-notice a:hover {
+  text-decoration: underline;
 }
 
 .contact-form {

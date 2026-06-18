@@ -6,10 +6,6 @@ public class TrafficLogs
 
     public string SessionId { get; set; } = string.Empty;
 
-    public string UserAgent { get; set; } = string.Empty;
-
-    public string Referer { get; set; } = string.Empty;
-
     public DateTime CreatedAt { get; set; }
 
     public ICollection<EventLogs> EventLogs { get; set; } = [];

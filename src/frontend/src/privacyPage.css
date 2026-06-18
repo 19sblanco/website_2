@@ -1,0 +1,73 @@
+.privacy-page {
+  flex: 1;
+}
+
+.privacy-page-section {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-lg);
+  text-align: left;
+}
+
+.privacy-label {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+
+.privacy-title {
+  margin: var(--space-sm) 0 0;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 600;
+  color: var(--text-h);
+  letter-spacing: -0.02em;
+}
+
+.privacy-updated {
+  margin: var(--space-md) 0 0;
+  font-size: var(--font-size-sm);
+  color: var(--text);
+}
+
+.privacy-body {
+  margin-top: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.privacy-body h2 {
+  margin: var(--space-md) 0 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.privacy-body p {
+  margin: 0;
+  font-size: var(--font-size-md);
+  line-height: 1.75;
+  color: var(--text);
+}
+
+.privacy-body ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  font-size: var(--font-size-md);
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.privacy-page-section .btn-pill-black {
+  margin-top: var(--space-2xl);
+  display: flex;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}

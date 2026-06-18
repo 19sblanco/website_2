@@ -116,7 +116,7 @@ public class WebController(
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failed to send contact emails for {Name} {Email} {Message} {TrafficId}", request.Name, request.Email, request.Message, trafficId);
+            _logger.LogError(ex, "Failed to send contact emails for {ContactId} {TrafficId}", contact.Id, trafficId);
         }
 
         return Ok(new { message = "Contact request received." });

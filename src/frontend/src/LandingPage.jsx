@@ -354,6 +354,12 @@ function LandingPage() {
             you.
           </p>
 
+          <p className="contact-privacy-notice">
+            By submitting this form, you agree that I may store your name,
+            email, and message. This visit may be linked to your submission. See
+            the <Link to="/privacy">privacy notice</Link> for details.
+          </p>
+
           <form className="contact-form" onSubmit={handleContactSubmit}>
             <label className="contact-field">
               <span>Name</span>
