@@ -92,12 +92,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors();
 
-if (!app.Environment.IsDevelopment())
-{
-    app.UseHttpsRedirection();
-}
-
 app.UseRateLimiter();
+
+app.MapGet("/health", () => Results.Ok()).DisableRateLimiting();
 
 app.MapControllers();
 

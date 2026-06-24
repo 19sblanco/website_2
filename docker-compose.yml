@@ -1,13 +1,38 @@
 services:
+  database:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootsecret
+      MYSQL_DATABASE: portfolio
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: appsecret
+    healthcheck:
+      test:
+        ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootsecret"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
   backend:
     build: ./src/backend
     env_file: .env
-    ports:
-      - "5089:5089"
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: server=database;port=3306;database=portfolio;user=appuser;password=appsecret
+      MigrateDatabase: "true"
+    depends_on:
+      database:
+        condition: service_healthy
 
   frontend:
     build: ./src/frontend
     ports:
-      - "4173:4173"
+      - "8080:8080"
+    environment:
+      PORT: 8080
+      BACKEND_URL: http://backend:8080
+      PROXY_IAM_AUTH: "false"
     depends_on:
       - backend

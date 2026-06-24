@@ -1,4 +1,4 @@
-FROM node:25-bookworm-slim
+FROM node:25-bookworm-slim AS build
 
 WORKDIR /app
 
@@ -10,6 +10,19 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 4173
+FROM node:25-bookworm-slim
 
-CMD ["npm", "run", "preview", "--", "--host"]
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm ci --omit=dev
+
+COPY --from=build /app/dist ./dist
+COPY server.mjs ./
+
+EXPOSE 8080
+
+ENV PORT=8080
+
+CMD ["node", "server.mjs"]

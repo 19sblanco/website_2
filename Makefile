@@ -15,7 +15,7 @@ endef
 .PHONY: help install install-e2e backend frontend db-connect format-frontend lint-frontend build-frontend \
 	verify-frontend format-backend build-backend verify-backend verify-all \
 	test-frontend test-backend test-e2e test-all \
-	docker-dev docker-dev-down docker-prod docker-prod-down \
+	docker-dev docker-dev-down docker-prod docker-prod-down docker-cloudrun docker-cloudrun-down docker-smoke-test \
 	docker-build-dev docker-build-frontend docker-build-backend
 
 help:
@@ -29,10 +29,13 @@ help:
 	@echo "  make test-all          Run all unit tests"
 	@echo ""
 	@echo "Host machine (requires Docker installed locally):"
-	@echo "  make docker-dev        Start dev + database containers"
-	@echo "  make docker-dev-down   Stop dev containers"
-	@echo "  make docker-prod       Start production containers"
-	@echo "  make docker-prod-down  Stop production containers"
+	@echo "  make docker-dev           Start dev + database containers"
+	@echo "  make docker-dev-down      Stop dev containers"
+	@echo "  make docker-prod          Start Cloud Run-style stack (alias for docker-cloudrun)"
+	@echo "  make docker-prod-down     Stop production containers"
+	@echo "  make docker-cloudrun      Frontend on :8080, backend internal only"
+	@echo "  make docker-cloudrun-down Stop Cloud Run-style stack"
+	@echo "  make docker-smoke-test    Smoke-test proxy without Docker"
 
 
 ######################
@@ -60,10 +63,19 @@ docker-dev-down:
 	docker compose -f .devcontainer/docker-compose.yml down
 
 docker-prod:
-	docker compose up --build
+	$(MAKE) docker-cloudrun
 
 docker-prod-down:
+	$(MAKE) docker-cloudrun-down
+
+docker-cloudrun:
+	docker compose up --build
+
+docker-cloudrun-down:
 	docker compose down
+
+docker-smoke-test:
+	bash scripts/smoke-test-proxy.sh
 
 docker-build-frontend:
 	docker build -t frontend-prod $(FRONTEND_DIR)
